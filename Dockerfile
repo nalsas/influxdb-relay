@@ -46,5 +46,5 @@ RUN rm -fr /go/src/github.com && \
 
 ENTRYPOINT [ "/usr/bin/influxdb-relay" ]
 
-CMD [ "-config", "/etc/influxdb-relay/influxdb-relay.conf" ]
+CMD [ "-config", "/etc/influxdb-relay/influxdb-relay.conf", "2>/var/log/influxdb-relay/influxdb-relay.log"]
 # EOF
