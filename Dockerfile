@@ -31,7 +31,7 @@ RUN apk update && \
 
 # Install
 RUN mkdir -p /go/src/github.com/veepee-moc/ && cd /go/src/github.com/veepee-moc/ && \
-    git clone https://github.com/nalsas/influxdb-relay && cd influxdb-relay && git checkout dev && \
+    git clone https://github.com/nalsas/influxdb-relay -b dev --depth=1 && \
     go get github.com/veepee-moc/influxdb-relay && \
     mv /go/bin/influxdb-relay /usr/bin/influxdb-relay && \
     chmod 755 /usr/bin/influxdb-relay && \
