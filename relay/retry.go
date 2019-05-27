@@ -75,7 +75,10 @@ func (r *retryBuffer) post(buf []byte, query string, auth string, endpoint strin
 	// already buffering or failed request
 	batch, err := r.list.add(buf, query, auth, endpoint)
 
-	defer batch.wg.Wait()
+	if batch != nil {
+		defer batch.wg.Wait()
+	}
+
 	if err == ErrBufferFull {
 		log.Println(query + endpoint + " Retry buffer full!")
 	}
