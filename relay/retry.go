@@ -2,6 +2,7 @@ package relay
 
 import (
 	"bytes"
+	"log"
 	"net/http"
 	"strconv"
 	"sync"
@@ -75,6 +76,9 @@ func (r *retryBuffer) post(buf []byte, query string, auth string, endpoint strin
 	batch, err := r.list.add(buf, query, auth, endpoint)
 
 	defer batch.wg.Wait()
+	if err == ErrBufferFull {
+		log.Println(query + endpoint + "Retry buffer full!")
+	}
 	// We do not wait for the WaitGroup because we don't want
 	// to leave the connection open
 	// The client will receive a 202 which closes the connection and
