@@ -37,8 +37,7 @@ RUN mkdir -p /go/src/github.com/veepee-moc/ && cd /go/src/github.com/veepee-moc/
     chmod 755 /usr/bin/influxdb-relay && \
     mkdir /etc/influxdb-relay && \
     touch /etc/influxdb-relay/influxdb-relay.conf && \
-    mkdir -p /var/log/influxdb-relay && \
-    ln -sf /dev/stderr /var/log/influxdb-relay/influxdb-relay.log
+    mkdir -p /var/log/influxdb-relay
 
 # Clean
 RUN rm -fr /go/src/github.com && \
