@@ -48,6 +48,17 @@ func main() {
 	flag.Usage = usage
 	flag.Parse()
 
+	log_path := os.Getenv("LOG_PATH")
+	if len(log_path) > 0 {
+		logFile, err := os.OpenFile(log_path, os.O_RDWR|os.O_CREATE, 0777)
+		if err != nil {
+			fmt.Printf("open file error=%s\r\n", err.Error())
+			os.Exit(-1)
+		}
+		defer logFile.Close()
+		log.SetOutput(logFile)
+	}
+
 	if *versionFlag {
 		fmt.Println("influxdb-relay version " + relayVersion)
 		return
