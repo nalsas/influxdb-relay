@@ -77,7 +77,7 @@ func (r *retryBuffer) post(buf []byte, query string, auth string, endpoint strin
 
 	defer batch.wg.Wait()
 	if err == ErrBufferFull {
-		log.Println(query + endpoint + "Retry buffer full!")
+		log.Println(query + endpoint + " Retry buffer full!")
 	}
 	// We do not wait for the WaitGroup because we don't want
 	// to leave the connection open
